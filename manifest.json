@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Auto Skip Ads",
+  "version": "1.0.0",
+  "description": "Automatically clicks \"Skip Ad\" on YouTube and fast-forwards ads that can't be skipped.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://m.youtube.com/*",
+        "https://music.youtube.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ]
+}
