@@ -15,7 +15,7 @@
     ".ytp-ad-overlay-close-container",
   ].join(",");
 
-  let wasMutedBeforeAd = null; // remembers your mute setting so we can restore it
+  let inAd = false; // true while we're fast-forwarding an ad
 
   function getPlayer() {
     return document.querySelector(".html5-video-player");
@@ -51,22 +51,18 @@
       // 1) Skippable ad: just press Skip
       if (clickAll(SKIP_BUTTON_SELECTORS)) return;
 
-      // 2) Unskippable ad: mute it and jump to the end
+      // 2) Unskippable ad: jump to the end
       if (video) {
-        if (wasMutedBeforeAd === null) wasMutedBeforeAd = video.muted;
-        video.muted = true;
+        inAd = true;
         if (Number.isFinite(video.duration) && video.duration > 0) {
           video.currentTime = Math.max(video.duration - 0.1, 0);
         }
         video.playbackRate = 16;
       }
-    } else if (wasMutedBeforeAd !== null) {
-      // Ad finished: put sound and speed back the way you had it
-      if (video) {
-        video.muted = wasMutedBeforeAd;
-        if (video.playbackRate === 16) video.playbackRate = 1;
-      }
-      wasMutedBeforeAd = null;
+    } else if (inAd) {
+      // Ad finished: put playback speed back to normal
+      if (video && video.playbackRate === 16) video.playbackRate = 1;
+      inAd = false;
     }
   }
 

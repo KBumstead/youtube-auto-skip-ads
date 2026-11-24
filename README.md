@@ -5,9 +5,9 @@ A small Chrome/Edge extension that skips YouTube ads for you, so you don't have 
 What it does:
 
 - Clicks **Skip Ad** the moment the button appears
-- For ads you can't skip: mutes them and jumps to the end
+- For ads you can't skip: jumps to the end
 - Closes the banner ads that pop up over the video
-- Puts your sound and playback speed back when the video starts
+- Puts playback speed back to normal when the video starts
 
 ## Install (one time, about 1 minute)
 
@@ -17,7 +17,7 @@ What it does:
 4. Pick this folder: `your-folder\youtube-auto-skip-ads`
 5. Reload any YouTube tabs you already have open
 
-That's it. It works on youtube.com, m.youtube.com and music.youtube.com.
+That's it. It works on youtube.com and all its subdomains (www, m, music).
 
 ## Updating or turning it off
 
